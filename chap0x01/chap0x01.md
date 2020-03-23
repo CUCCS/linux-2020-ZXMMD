@@ -203,7 +203,7 @@ get /home/zxmmd/custom.iso D:/
 - 设置用户密码
   - 确认密码
 - 设置时区为上海
-- 在安装期间不使用NTP设置时
+- 在安装期间不使用NTP设置时钟
 - 选择安装server软件包
 - 安装openssh-server
 - 禁止自动升级软件包
