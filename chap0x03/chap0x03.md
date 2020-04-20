@@ -172,9 +172,9 @@ sudo lvextend -L +1G /dev/mapper/CUC--Linux--vg-root
 ![](images/lvextend.png)
 
 ##### 6. 如何通过systemd设置实现在网络连通时运行一个指定脚本，在网络断开时运行另一个脚本？
+使用networkd-dispatcher
 
 编写脚本文件
-
 ```bash
 # 编写dormant.d/demo.sh
 #!/bin/bash
@@ -239,7 +239,7 @@ sudo usermod -G sudo test
 #再次创建名为test的用户时，test直接具备sudo执行权限，因为添加的test ALL=(ALL:ALL) ALL还在
 ```
 
-2.论快照的重要性
+2.论快照的重要性。
 在实现开机自动挂载Virtualbox的共享目录分区时，由于不知道的原因，出现了一些错误。
 
 ![](images/error1.png)
@@ -250,11 +250,11 @@ sudo usermod -G sudo test
 
 3.实现开机自动挂载共享文件夹，在设置的时候勾选自动挂载，会挂载到/media/目录下
 
-4.慎重选择网上教程
+4.慎重选择网上教程。
 安装增强功能时，参考了[Ubuntu-server 18.04.2 LTS 安装VirtualBox增强功能](https://www.jianshu.com/p/45672da5e084)
 但实际上并没有那么复杂，只需要`sudo apt-get install virtualbox-guest-utils`
 
-5.动手操作的重要性
+5.动手操作的重要性。
 在完成自查清单的过程中，在网络上和师哥师姐的作业中，一般能找到对应的命令操作，本来以为很简单，但是在实践的过程中总是会遇到问题，比如实现开机自动挂载共享文件夹，代码清清楚楚，但就是不断地出现问题。古人云：纸上得来终觉浅，绝知此事要躬行。还是有收获的。
 
 ### 参阅
