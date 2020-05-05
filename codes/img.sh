@@ -15,7 +15,7 @@ DIR=$(pwd)              #要操作的图片目录
 #输出帮助信息
 helps()   
 {
-	echo "Use:bash test.sh  -d <directory> [option|option]"
+	echo "Use:bash img.sh  -d <directory> [option|option]"
 	
 	echo "options:"
 	echo "  -d [directory]                   Path to pending file"
@@ -101,7 +101,7 @@ exit 0
 # -l 后面接长选项列表
 # -n 指定哪个脚本处理这个参数
 # 使用getopt和循环处理多参数和长参数的情况
-TEMP=$(getopt -o cr:d:q:w: --long quality:arga,directory:,watermark:,prefix:,postfix:,help,resize: -n 'test.sh' -- "$@")
+TEMP=$(getopt -o cr:d:q:w: --long quality:arga,directory:,watermark:,prefix:,postfix:,help,resize: -n 'img.sh' -- "$@")
 
 # -- 保证后面的字符串不直接被解析
 #set会重新排列参数顺序 这些值在 getopt中重新排列过了
@@ -119,7 +119,7 @@ while true ; do
                 *)RESOLUTION=$2 ; shift 2 ;;
             esac ;;
             
-        -h|--help) H_FLAG="1"; shift ;;
+        --help) H_FLAG="1"; shift ;;
         
         -d|--directory)
             case "$2" in 
