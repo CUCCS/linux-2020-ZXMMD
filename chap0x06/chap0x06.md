@@ -71,24 +71,24 @@ sudo systemctl restart ssh
 # root免密登录
 ssh -i foo root@192.168.56.111
 ```
-![](images/Password_free_login.PNG)
+![](images/Password_free_login.png)
 
 #### FTP
 - 脚本文件：[vsftpd.sh](scripts/vsftpd.sh)
 - 配置文件：[/etc/vsftpd.conf](configs/vsftpd.conf)
 
 - 配置一个提供匿名访问的FTP服务器，匿名访问者可以访问1个目录且仅拥有该目录及其所有子目录的只读访问权限
-![](images/anonymous_access.PNG)
+![](images/anonymous_access.png)
 
 - 配置一个支持用户名和密码方式访问的账号，该账号继承匿名访问者所有权限，且拥有对另1个独立目录及其子目录完整读写（包括创建目录、修改文件、删除文件等）权限
-![](images/username_and_password_access.PNG)
+![](images/username_and_password_access.png)
 
 
 - FTP用户不能越权访问指定目录之外的任意其他目录和文件
-![](images/prohibit_unauthorized.PNG)
+![](images/prohibit_unauthorized.png)
 
 - 匿名访问权限仅限白名单IP来源用户访问，禁止白名单IP以外的访问
-![](images/only_whitelist.PNG)
+![](images/only_whitelist.png)
 
 #### NFS
 - 脚本文件
@@ -99,18 +99,18 @@ ssh -i foo root@192.168.56.111
 
 - 在1台Linux上配置NFS服务，另1台电脑上配置NFS客户端挂载2个权限不同的共享目录，分别对应只读访问和读写访问权限
   - 创建的两个目录分别为:只读`/nfs/gen_r`和读写`/nfs/gen_rw`
-    ![](images/share_srv.PNG)
-    ![](images/share_clt.PNG)
+    ![](images/share_srv.png)
+    ![](images/share_clt.png)
   - 两个共享文件目录对应只读和读写访问权限
-    ![](images/authority.PNG)
+    ![](images/authority.png)
   - 客户端共享目录中文件、子目录的属主、权限信息和在NFS服务器端的信息,uid和gid一致
-    ![](images/client.PNG)
-    ![](images/server.PNG)
+    ![](images/client.png)
+    ![](images/server.png)
 - 添加两个/home下的共享目录，分别设置`no_root_squash`和不设置`no_root_squash`
   - 对于设置了no_root_squash的共享目录
-    ![](images/no_squash.PNG)
+    ![](images/no_squash.png)
   - 对于没有设置no_root_squash的共享目录，无法在工作主机(client)写入文件，创建目录
-    ![](images/squash.PNG)
+    ![](images/squash.png)
 
 #### DHCP
 - 脚本文件 [dhcp.sh](scripts/dhcp.sh)
@@ -120,8 +120,8 @@ ssh -i foo root@192.168.56.111
 
 - 2台虚拟机使用Internal网络模式连接，其中一台虚拟机上配置DHCP服务，另一台服务器作为DHCP客户端，从该DHCP服务器获取网络地址配置
   - 先将两台虚拟机增加网卡为`内部网络`网络模式`
-      ![](images/ubuntu.PNG)
-      ![](images/ubuntu_cloned.PNG)
+      ![](images/ubuntu.png)
+      ![](images/ubuntu_cloned.png)
 
   - server配置
       * `/etc/netplan/01-netcfg.yaml`
@@ -131,8 +131,8 @@ ssh -i foo root@192.168.56.111
       * `/etc/netplan/01-netcfg.yaml`
         ![](images/client_net.png)
   - 实验结果
-    ![](images/dhcp_success.PNG)
-    ![](images/ip.PNG)
+    ![](images/dhcp_success.png)
+    ![](images/ip.png)
 
 #### DNS
 - 基于上述Internal网络模式连接的虚拟机实验环境，在DHCP服务器上配置DNS服务，使得另一台作为DNS客户端的主机可以通过该DNS服务器进行DNS查询
@@ -195,9 +195,9 @@ sudo vim /etc/resolvconf/resolv.conf.d/head
     nameserver 192.168.57.1
 ```
 - 测试结果：
-![](images/dns_search.PNG)
-![](images/dns_wp.PNG)
-![](images/dns_dvwa.PNG)
+![](images/dns_search.png)
+![](images/dns_wp.png)
+![](images/dns_dvwa.png)
 
 #### Samba
 
@@ -207,23 +207,23 @@ sudo vim /etc/resolvconf/resolv.conf.d/head
   - 在虚拟机上运行脚本
   - 打开资源管理器，右键“此电脑”，选择“添加一个网络位置”
   - 输入共享文件夹路径
-   ![](images/site_location.PNG)
-   ![](images/site_name.PNG)
+   ![](images/site_location.png)
+   ![](images/site_name.png)
 
   - 访问匿名目录，不用输入账号密码
-   ![](images/guest.PNG)
+   ![](images/guest.png)
 
   - 访问指定用户文件夹，需要输入账号密码
-   ![](images/demo.PNG)
+   ![](images/demo.png)
 
 - 在Linux上连接Windows10上的服务器
   - 安装smbclient `sudo apt install smbclient`
   - 在windows 10上设置共享目录,参考[linux-public-JuliBeacon](https://github.com/CUCCS/2015-linux-public-JuliBeacon/blob/exp6/%E5%AE%9E%E9%AA%8C%206/%E5%9C%A8Linux%E5%92%8CWindows%E9%97%B4%E8%AE%BE%E7%BD%AE%E6%96%87%E4%BB%B6%E5%85%B1%E4%BA%AB.md)
   - Linux访问Windows的共享目录
-   ![](images/share.PNG)
+   ![](images/share.png)
 
   - 下载整个目录
-   ![](images/download.PNG)
+   ![](images/download.png)
 
 ### 说明
 - 由于觉得多重加载方式配置虚拟机比较容易，就没有给目标主机做快照，导致使用的目标主机的IP地址换了几次。截图中出现的`192.168.56.110`和`192.168.56.111`均指目标主机
